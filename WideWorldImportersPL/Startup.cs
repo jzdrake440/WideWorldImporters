@@ -15,6 +15,8 @@ using DataTables.Extensions;
 using WideWorldImporters.DataTables;
 using AutoMapper;
 using DataTables.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace WideWorldImporters
 {
@@ -54,10 +56,17 @@ namespace WideWorldImporters
                 app.UseDeveloperExceptionPage();
             }
 
-            app.Run(async (context) =>
+            app.UseStaticFiles();
+
+            //handler routing of static resources
+            //currently, only handling images; css and js are bundled into wwwroot
+            app.UseStaticFiles(new StaticFileOptions
             {
-                await context.Response.WriteAsync("Hello World!");
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "resources", "img")),
+                RequestPath = "/img"
             });
+
+            app.UseMvc();
         }
     }
 }
