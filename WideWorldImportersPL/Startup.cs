@@ -11,9 +11,10 @@ using Microsoft.EntityFrameworkCore;
 using WideWorldImporters.DAL;
 using Microsoft.Extensions.Configuration;
 using WideWorldImporters.BLL.Services;
-using DataTables.Services;
+using DataTables.Extensions;
 using WideWorldImporters.DataTables;
 using AutoMapper;
+using DataTables.Services;
 
 namespace WideWorldImportersPL
 {
