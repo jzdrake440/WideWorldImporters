@@ -16,7 +16,7 @@ using WideWorldImporters.DataTables;
 using AutoMapper;
 using DataTables.Services;
 
-namespace WideWorldImportersPL
+namespace WideWorldImporters
 {
     public class Startup
     {

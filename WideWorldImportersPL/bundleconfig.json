@@ -1,0 +1,46 @@
+﻿[
+  //CSS
+  {
+    "outputFileName": "wwwroot/css/bootstrap.css",
+    "inputFiles": [
+      "node_modules/bootstrap/dist/css/bootstrap.css",
+      "Resources/css/wwi.css"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/css/dataTables.css",
+    "inputFiles": [
+      "node_modules/datatables.net-bs4/css/dataTables.bootstrap4.js"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+
+  //Javascript
+  {
+    "outputFileName": "wwwroot/js/lib.js",
+    "inputFiles": [
+      "node_modules/jquery/dist/jquery.js",
+      "node_modules/popper.js/dist/umd/popper.js",
+      "node_modules/bootstrap/dist/js/bootstrap.js"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFileName": "wwwroot/js/dataTables.js",
+    "inputFiles": [
+      "node_modules/datatables.net/js/jquery.dataTables.js",
+      "node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js",
+      "Resources/js/dataTables.searchHeaders.js"
+    ],
+    "minify": {
+      "enabled": false
+    }
+  }
+]

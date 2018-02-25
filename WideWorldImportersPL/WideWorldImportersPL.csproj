@@ -2,11 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>WideWorldImporters</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="AutoMapper\" />
-    <Folder Include="Controllers\api\" />
+    <Folder Include="Model\" />
+    <Folder Include="Resources\img\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

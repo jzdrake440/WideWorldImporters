@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WideWorldImportersPL.Controllers
+namespace WideWorldImporters.Controllers
 {
-    public class PersonController : Controller
+    public class PeopleController : Controller
     {
         public IActionResult Index()
         {

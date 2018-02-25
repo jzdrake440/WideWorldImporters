@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "WideWorldImportersPL": {
+    "WideWorldImporters": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
