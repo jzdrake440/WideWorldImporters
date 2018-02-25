@@ -6,54 +6,44 @@ namespace WideWorldImporters.DAL
 {
     public partial class WideWorldImportersContext : DbContext
     {
-        public virtual DbSet<BuyingGroups> BuyingGroups { get; set; }
-        public virtual DbSet<Cities> Cities { get; set; }
-        public virtual DbSet<ColdRoomTemperatures> ColdRoomTemperatures { get; set; }
-        public virtual DbSet<Colors> Colors { get; set; }
-        public virtual DbSet<Countries> Countries { get; set; }
-        public virtual DbSet<CustomerCategories> CustomerCategories { get; set; }
-        public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<CustomerTransactions> CustomerTransactions { get; set; }
-        public virtual DbSet<DeliveryMethods> DeliveryMethods { get; set; }
-        public virtual DbSet<InvoiceLines> InvoiceLines { get; set; }
-        public virtual DbSet<Invoices> Invoices { get; set; }
-        public virtual DbSet<OrderLines> OrderLines { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<PackageTypes> PackageTypes { get; set; }
-        public virtual DbSet<PaymentMethods> PaymentMethods { get; set; }
-        public virtual DbSet<People> People { get; set; }
-        public virtual DbSet<PurchaseOrderLines> PurchaseOrderLines { get; set; }
-        public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
-        public virtual DbSet<SpecialDeals> SpecialDeals { get; set; }
-        public virtual DbSet<StateProvinces> StateProvinces { get; set; }
-        public virtual DbSet<StockGroups> StockGroups { get; set; }
-        public virtual DbSet<StockItemHoldings> StockItemHoldings { get; set; }
-        public virtual DbSet<StockItems> StockItems { get; set; }
-        public virtual DbSet<StockItemStockGroups> StockItemStockGroups { get; set; }
-        public virtual DbSet<StockItemTransactions> StockItemTransactions { get; set; }
-        public virtual DbSet<SupplierCategories> SupplierCategories { get; set; }
-        public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<SupplierTransactions> SupplierTransactions { get; set; }
-        public virtual DbSet<SystemParameters> SystemParameters { get; set; }
-        public virtual DbSet<TransactionTypes> TransactionTypes { get; set; }
-        public virtual DbSet<VehicleTemperatures> VehicleTemperatures { get; set; }
-
+        public virtual DbSet<BuyingGroup> BuyingGroups { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<ColdRoomTemperature> ColdRoomTemperatures { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<CustomerCategory> CustomerCategories { get; set; }
+        public virtual DbSet<CustomerTransaction> CustomerTransactions { get; set; }
+        public virtual DbSet<DeliveryMethod> DeliveryMethods { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        public virtual DbSet<InvoiceLine> InvoiceLines { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderLine> OrderLines { get; set; }
+        public virtual DbSet<PackageType> PackageTypes { get; set; }
+        public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
+        public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual DbSet<PurchaseOrderLine> PurchaseOrderLines { get; set; }
+        public virtual DbSet<SpecialDeal> SpecialDeals { get; set; }
+        public virtual DbSet<StateProvince> StateProvinces { get; set; }
+        public virtual DbSet<StockGroup> StockGroups { get; set; }
+        public virtual DbSet<StockItem> StockItems { get; set; }
+        public virtual DbSet<StockItemHolding> StockItemHoldings { get; set; }
+        public virtual DbSet<StockItemStockGroup> StockItemStockGroups { get; set; }
+        public virtual DbSet<StockItemTransaction> StockItemTransactions { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<SupplierCategory> SupplierCategories { get; set; }
+        public virtual DbSet<SupplierTransaction> SupplierTransactions { get; set; }
+        public virtual DbSet<SystemParameter> SystemParameters { get; set; }
+        public virtual DbSet<TransactionType> TransactionTypes { get; set; }
+        public virtual DbSet<VehicleTemperature> VehicleTemperatures { get; set; }
 
         public WideWorldImportersContext(DbContextOptions options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BuyingGroups>(entity =>
+            modelBuilder.Entity<BuyingGroup>(entity =>
             {
-                entity.HasKey(e => e.BuyingGroupId);
-
                 entity.ToTable("BuyingGroups", "Sales");
 
                 entity.HasIndex(e => e.BuyingGroupName)
@@ -75,10 +65,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_BuyingGroups_Application_People");
             });
 
-            modelBuilder.Entity<Cities>(entity =>
+            modelBuilder.Entity<City>(entity =>
             {
-                entity.HasKey(e => e.CityId);
-
                 entity.ToTable("Cities", "Application");
 
                 entity.HasIndex(e => e.StateProvinceId)
@@ -107,11 +95,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_Cities_StateProvinceID_Application_StateProvinces");
             });
 
-            modelBuilder.Entity<ColdRoomTemperatures>(entity =>
+            modelBuilder.Entity<ColdRoomTemperature>(entity =>
             {
-                entity.HasKey(e => e.ColdRoomTemperatureId)
-                    .ForSqlServerIsClustered(false);
-
                 entity.ToTable("ColdRoomTemperatures", "Warehouse");
 
                 entity.HasAnnotation("SqlServer:MemoryOptimized", true);
@@ -124,10 +109,8 @@ namespace WideWorldImporters.DAL
                 entity.Property(e => e.Temperature).HasColumnType("decimal(10, 2)");
             });
 
-            modelBuilder.Entity<Colors>(entity =>
+            modelBuilder.Entity<Color>(entity =>
             {
-                entity.HasKey(e => e.ColorId);
-
                 entity.ToTable("Colors", "Warehouse");
 
                 entity.HasIndex(e => e.ColorName)
@@ -149,10 +132,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_Colors_Application_People");
             });
 
-            modelBuilder.Entity<Countries>(entity =>
+            modelBuilder.Entity<Country>(entity =>
             {
-                entity.HasKey(e => e.CountryId);
-
                 entity.ToTable("Countries", "Application");
 
                 entity.HasIndex(e => e.CountryName)
@@ -198,35 +179,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_Countries_Application_People");
             });
 
-            modelBuilder.Entity<CustomerCategories>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.CustomerCategoryId);
-
-                entity.ToTable("CustomerCategories", "Sales");
-
-                entity.HasIndex(e => e.CustomerCategoryName)
-                    .HasName("UQ_Sales_CustomerCategories_CustomerCategoryName")
-                    .IsUnique();
-
-                entity.Property(e => e.CustomerCategoryId)
-                    .HasColumnName("CustomerCategoryID")
-                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerCategoryID])");
-
-                entity.Property(e => e.CustomerCategoryName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.CustomerCategories)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_CustomerCategories_Application_People");
-            });
-
-            modelBuilder.Entity<Customers>(entity =>
-            {
-                entity.HasKey(e => e.CustomerId);
-
                 entity.ToTable("Customers", "Sales");
 
                 entity.HasIndex(e => e.AlternateContactPersonId)
@@ -323,7 +277,7 @@ namespace WideWorldImporters.DAL
                     .HasMaxLength(256);
 
                 entity.HasOne(d => d.AlternateContactPerson)
-                    .WithMany(p => p.CustomersAlternateContactPerson)
+                    .WithMany(p => p.CustomerAlternateContactPeople)
                     .HasForeignKey(d => d.AlternateContactPersonId)
                     .HasConstraintName("FK_Sales_Customers_AlternateContactPersonID_Application_People");
 
@@ -345,7 +299,7 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_Customers_CustomerCategoryID_Sales_CustomerCategories");
 
                 entity.HasOne(d => d.DeliveryCity)
-                    .WithMany(p => p.CustomersDeliveryCity)
+                    .WithMany(p => p.CustomerDeliveryCities)
                     .HasForeignKey(d => d.DeliveryCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Customers_DeliveryCityID_Application_Cities");
@@ -357,29 +311,49 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_Customers_DeliveryMethodID_Application_DeliveryMethods");
 
                 entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.CustomersLastEditedByNavigation)
+                    .WithMany(p => p.CustomerLastEditedByNavigations)
                     .HasForeignKey(d => d.LastEditedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Customers_Application_People");
 
                 entity.HasOne(d => d.PostalCity)
-                    .WithMany(p => p.CustomersPostalCity)
+                    .WithMany(p => p.CustomerPostalCities)
                     .HasForeignKey(d => d.PostalCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Customers_PostalCityID_Application_Cities");
 
                 entity.HasOne(d => d.PrimaryContactPerson)
-                    .WithMany(p => p.CustomersPrimaryContactPerson)
+                    .WithMany(p => p.CustomerPrimaryContactPeople)
                     .HasForeignKey(d => d.PrimaryContactPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Customers_PrimaryContactPersonID_Application_People");
             });
 
-            modelBuilder.Entity<CustomerTransactions>(entity =>
+            modelBuilder.Entity<CustomerCategory>(entity =>
             {
-                entity.HasKey(e => e.CustomerTransactionId)
-                    .ForSqlServerIsClustered(false);
+                entity.ToTable("CustomerCategories", "Sales");
 
+                entity.HasIndex(e => e.CustomerCategoryName)
+                    .HasName("UQ_Sales_CustomerCategories_CustomerCategoryName")
+                    .IsUnique();
+
+                entity.Property(e => e.CustomerCategoryId)
+                    .HasColumnName("CustomerCategoryID")
+                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerCategoryID])");
+
+                entity.Property(e => e.CustomerCategoryName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.CustomerCategories)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_CustomerCategories_Application_People");
+            });
+
+            modelBuilder.Entity<CustomerTransaction>(entity =>
+            {
                 entity.ToTable("CustomerTransactions", "Sales");
 
                 entity.HasIndex(e => e.TransactionDate)
@@ -450,10 +424,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_CustomerTransactions_TransactionTypeID_Application_TransactionTypes");
             });
 
-            modelBuilder.Entity<DeliveryMethods>(entity =>
+            modelBuilder.Entity<DeliveryMethod>(entity =>
             {
-                entity.HasKey(e => e.DeliveryMethodId);
-
                 entity.ToTable("DeliveryMethods", "Application");
 
                 entity.HasIndex(e => e.DeliveryMethodName)
@@ -475,71 +447,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_DeliveryMethods_Application_People");
             });
 
-            modelBuilder.Entity<InvoiceLines>(entity =>
+            modelBuilder.Entity<Invoice>(entity =>
             {
-                entity.HasKey(e => e.InvoiceLineId);
-
-                entity.ToTable("InvoiceLines", "Sales");
-
-                entity.HasIndex(e => e.InvoiceId)
-                    .HasName("FK_Sales_InvoiceLines_InvoiceID");
-
-                entity.HasIndex(e => e.PackageTypeId)
-                    .HasName("FK_Sales_InvoiceLines_PackageTypeID");
-
-                entity.HasIndex(e => e.StockItemId)
-                    .HasName("FK_Sales_InvoiceLines_StockItemID");
-
-                entity.HasIndex(e => new { e.InvoiceId, e.StockItemId, e.Quantity, e.UnitPrice, e.LineProfit, e.LastEditedWhen })
-                    .HasName("NCCX_Sales_InvoiceLines");
-
-                entity.Property(e => e.InvoiceLineId)
-                    .HasColumnName("InvoiceLineID")
-                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[InvoiceLineID])");
-
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(100);
-
-                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
-
-                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-                entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
-
-                entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
-
-                entity.Property(e => e.TaxRate).HasColumnType("decimal(18, 3)");
-
-                entity.HasOne(d => d.Invoice)
-                    .WithMany(p => p.InvoiceLines)
-                    .HasForeignKey(d => d.InvoiceId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices");
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.InvoiceLines)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_InvoiceLines_Application_People");
-
-                entity.HasOne(d => d.PackageType)
-                    .WithMany(p => p.InvoiceLines)
-                    .HasForeignKey(d => d.PackageTypeId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes");
-
-                entity.HasOne(d => d.StockItem)
-                    .WithMany(p => p.InvoiceLines)
-                    .HasForeignKey(d => d.StockItemId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems");
-            });
-
-            modelBuilder.Entity<Invoices>(entity =>
-            {
-                entity.HasKey(e => e.InvoiceId);
-
                 entity.ToTable("Invoices", "Sales");
 
                 entity.HasIndex(e => e.AccountsPersonId)
@@ -606,25 +515,25 @@ namespace WideWorldImporters.DAL
                 entity.Property(e => e.SalespersonPersonId).HasColumnName("SalespersonPersonID");
 
                 entity.HasOne(d => d.AccountsPerson)
-                    .WithMany(p => p.InvoicesAccountsPerson)
+                    .WithMany(p => p.InvoiceAccountsPeople)
                     .HasForeignKey(d => d.AccountsPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_AccountsPersonID_Application_People");
 
                 entity.HasOne(d => d.BillToCustomer)
-                    .WithMany(p => p.InvoicesBillToCustomer)
+                    .WithMany(p => p.InvoiceBillToCustomers)
                     .HasForeignKey(d => d.BillToCustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_BillToCustomerID_Sales_Customers");
 
                 entity.HasOne(d => d.ContactPerson)
-                    .WithMany(p => p.InvoicesContactPerson)
+                    .WithMany(p => p.InvoiceContactPeople)
                     .HasForeignKey(d => d.ContactPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_ContactPersonID_Application_People");
 
                 entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.InvoicesCustomer)
+                    .WithMany(p => p.InvoiceCustomers)
                     .HasForeignKey(d => d.CustomerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_CustomerID_Sales_Customers");
@@ -636,7 +545,7 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_Invoices_DeliveryMethodID_Application_DeliveryMethods");
 
                 entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.InvoicesLastEditedByNavigation)
+                    .WithMany(p => p.InvoiceLastEditedByNavigations)
                     .HasForeignKey(d => d.LastEditedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_Application_People");
@@ -647,22 +556,152 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_Invoices_OrderID_Sales_Orders");
 
                 entity.HasOne(d => d.PackedByPerson)
-                    .WithMany(p => p.InvoicesPackedByPerson)
+                    .WithMany(p => p.InvoicePackedByPeople)
                     .HasForeignKey(d => d.PackedByPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_PackedByPersonID_Application_People");
 
                 entity.HasOne(d => d.SalespersonPerson)
-                    .WithMany(p => p.InvoicesSalespersonPerson)
+                    .WithMany(p => p.InvoiceSalespersonPeople)
                     .HasForeignKey(d => d.SalespersonPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Sales_Invoices_SalespersonPersonID_Application_People");
             });
 
-            modelBuilder.Entity<OrderLines>(entity =>
+            modelBuilder.Entity<InvoiceLine>(entity =>
             {
-                entity.HasKey(e => e.OrderLineId);
+                entity.ToTable("InvoiceLines", "Sales");
 
+                entity.HasIndex(e => e.InvoiceId)
+                    .HasName("FK_Sales_InvoiceLines_InvoiceID");
+
+                entity.HasIndex(e => e.PackageTypeId)
+                    .HasName("FK_Sales_InvoiceLines_PackageTypeID");
+
+                entity.HasIndex(e => e.StockItemId)
+                    .HasName("FK_Sales_InvoiceLines_StockItemID");
+
+                entity.HasIndex(e => new { e.InvoiceId, e.StockItemId, e.Quantity, e.UnitPrice, e.LineProfit, e.LastEditedWhen })
+                    .HasName("NCCX_Sales_InvoiceLines");
+
+                entity.Property(e => e.InvoiceLineId)
+                    .HasColumnName("InvoiceLineID")
+                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[InvoiceLineID])");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
+
+                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
+
+                entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
+
+                entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
+
+                entity.Property(e => e.TaxRate).HasColumnType("decimal(18, 3)");
+
+                entity.HasOne(d => d.Invoice)
+                    .WithMany(p => p.InvoiceLines)
+                    .HasForeignKey(d => d.InvoiceId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices");
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.InvoiceLines)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_InvoiceLines_Application_People");
+
+                entity.HasOne(d => d.PackageType)
+                    .WithMany(p => p.InvoiceLines)
+                    .HasForeignKey(d => d.PackageTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes");
+
+                entity.HasOne(d => d.StockItem)
+                    .WithMany(p => p.InvoiceLines)
+                    .HasForeignKey(d => d.StockItemId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems");
+            });
+
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.ToTable("Orders", "Sales");
+
+                entity.HasIndex(e => e.ContactPersonId)
+                    .HasName("FK_Sales_Orders_ContactPersonID");
+
+                entity.HasIndex(e => e.CustomerId)
+                    .HasName("FK_Sales_Orders_CustomerID");
+
+                entity.HasIndex(e => e.PickedByPersonId)
+                    .HasName("FK_Sales_Orders_PickedByPersonID");
+
+                entity.HasIndex(e => e.SalespersonPersonId)
+                    .HasName("FK_Sales_Orders_SalespersonPersonID");
+
+                entity.Property(e => e.OrderId)
+                    .HasColumnName("OrderID")
+                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderID])");
+
+                entity.Property(e => e.BackorderOrderId).HasColumnName("BackorderOrderID");
+
+                entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
+
+                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+
+                entity.Property(e => e.CustomerPurchaseOrderNumber).HasMaxLength(20);
+
+                entity.Property(e => e.ExpectedDeliveryDate).HasColumnType("date");
+
+                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
+
+                entity.Property(e => e.OrderDate).HasColumnType("date");
+
+                entity.Property(e => e.PickedByPersonId).HasColumnName("PickedByPersonID");
+
+                entity.Property(e => e.SalespersonPersonId).HasColumnName("SalespersonPersonID");
+
+                entity.HasOne(d => d.BackorderOrder)
+                    .WithMany(p => p.InverseBackorderOrder)
+                    .HasForeignKey(d => d.BackorderOrderId)
+                    .HasConstraintName("FK_Sales_Orders_BackorderOrderID_Sales_Orders");
+
+                entity.HasOne(d => d.ContactPerson)
+                    .WithMany(p => p.OrderContactPeople)
+                    .HasForeignKey(d => d.ContactPersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Orders_ContactPersonID_Application_People");
+
+                entity.HasOne(d => d.Customer)
+                    .WithMany(p => p.Orders)
+                    .HasForeignKey(d => d.CustomerId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Orders_CustomerID_Sales_Customers");
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.OrderLastEditedByNavigations)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Orders_Application_People");
+
+                entity.HasOne(d => d.PickedByPerson)
+                    .WithMany(p => p.OrderPickedByPeople)
+                    .HasForeignKey(d => d.PickedByPersonId)
+                    .HasConstraintName("FK_Sales_Orders_PickedByPersonID_Application_People");
+
+                entity.HasOne(d => d.SalespersonPerson)
+                    .WithMany(p => p.OrderSalespersonPeople)
+                    .HasForeignKey(d => d.SalespersonPersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Sales_Orders_SalespersonPersonID_Application_People");
+            });
+
+            modelBuilder.Entity<OrderLine>(entity =>
+            {
                 entity.ToTable("OrderLines", "Sales");
 
                 entity.HasIndex(e => e.OrderId)
@@ -726,85 +765,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_OrderLines_StockItemID_Warehouse_StockItems");
             });
 
-            modelBuilder.Entity<Orders>(entity =>
+            modelBuilder.Entity<PackageType>(entity =>
             {
-                entity.HasKey(e => e.OrderId);
-
-                entity.ToTable("Orders", "Sales");
-
-                entity.HasIndex(e => e.ContactPersonId)
-                    .HasName("FK_Sales_Orders_ContactPersonID");
-
-                entity.HasIndex(e => e.CustomerId)
-                    .HasName("FK_Sales_Orders_CustomerID");
-
-                entity.HasIndex(e => e.PickedByPersonId)
-                    .HasName("FK_Sales_Orders_PickedByPersonID");
-
-                entity.HasIndex(e => e.SalespersonPersonId)
-                    .HasName("FK_Sales_Orders_SalespersonPersonID");
-
-                entity.Property(e => e.OrderId)
-                    .HasColumnName("OrderID")
-                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderID])");
-
-                entity.Property(e => e.BackorderOrderId).HasColumnName("BackorderOrderID");
-
-                entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
-
-                entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
-                entity.Property(e => e.CustomerPurchaseOrderNumber).HasMaxLength(20);
-
-                entity.Property(e => e.ExpectedDeliveryDate).HasColumnType("date");
-
-                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-                entity.Property(e => e.OrderDate).HasColumnType("date");
-
-                entity.Property(e => e.PickedByPersonId).HasColumnName("PickedByPersonID");
-
-                entity.Property(e => e.SalespersonPersonId).HasColumnName("SalespersonPersonID");
-
-                entity.HasOne(d => d.BackorderOrder)
-                    .WithMany(p => p.InverseBackorderOrder)
-                    .HasForeignKey(d => d.BackorderOrderId)
-                    .HasConstraintName("FK_Sales_Orders_BackorderOrderID_Sales_Orders");
-
-                entity.HasOne(d => d.ContactPerson)
-                    .WithMany(p => p.OrdersContactPerson)
-                    .HasForeignKey(d => d.ContactPersonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_Orders_ContactPersonID_Application_People");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.CustomerId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_Orders_CustomerID_Sales_Customers");
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.OrdersLastEditedByNavigation)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_Orders_Application_People");
-
-                entity.HasOne(d => d.PickedByPerson)
-                    .WithMany(p => p.OrdersPickedByPerson)
-                    .HasForeignKey(d => d.PickedByPersonId)
-                    .HasConstraintName("FK_Sales_Orders_PickedByPersonID_Application_People");
-
-                entity.HasOne(d => d.SalespersonPerson)
-                    .WithMany(p => p.OrdersSalespersonPerson)
-                    .HasForeignKey(d => d.SalespersonPersonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Sales_Orders_SalespersonPersonID_Application_People");
-            });
-
-            modelBuilder.Entity<PackageTypes>(entity =>
-            {
-                entity.HasKey(e => e.PackageTypeId);
-
                 entity.ToTable("PackageTypes", "Warehouse");
 
                 entity.HasIndex(e => e.PackageTypeName)
@@ -826,10 +788,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_PackageTypes_Application_People");
             });
 
-            modelBuilder.Entity<PaymentMethods>(entity =>
+            modelBuilder.Entity<PaymentMethod>(entity =>
             {
-                entity.HasKey(e => e.PaymentMethodId);
-
                 entity.ToTable("PaymentMethods", "Application");
 
                 entity.HasIndex(e => e.PaymentMethodName)
@@ -851,10 +811,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_PaymentMethods_Application_People");
             });
 
-            modelBuilder.Entity<People>(entity =>
+            modelBuilder.Entity<Person>(entity =>
             {
-                entity.HasKey(e => e.PersonId);
-
                 entity.ToTable("People", "Application");
 
                 entity.HasIndex(e => e.FullName)
@@ -903,10 +861,64 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_People_Application_People");
             });
 
-            modelBuilder.Entity<PurchaseOrderLines>(entity =>
+            modelBuilder.Entity<PurchaseOrder>(entity =>
             {
-                entity.HasKey(e => e.PurchaseOrderLineId);
+                entity.ToTable("PurchaseOrders", "Purchasing");
 
+                entity.HasIndex(e => e.ContactPersonId)
+                    .HasName("FK_Purchasing_PurchaseOrders_ContactPersonID");
+
+                entity.HasIndex(e => e.DeliveryMethodId)
+                    .HasName("FK_Purchasing_PurchaseOrders_DeliveryMethodID");
+
+                entity.HasIndex(e => e.SupplierId)
+                    .HasName("FK_Purchasing_PurchaseOrders_SupplierID");
+
+                entity.Property(e => e.PurchaseOrderId)
+                    .HasColumnName("PurchaseOrderID")
+                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderID])");
+
+                entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
+
+                entity.Property(e => e.DeliveryMethodId).HasColumnName("DeliveryMethodID");
+
+                entity.Property(e => e.ExpectedDeliveryDate).HasColumnType("date");
+
+                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
+
+                entity.Property(e => e.OrderDate).HasColumnType("date");
+
+                entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
+
+                entity.Property(e => e.SupplierReference).HasMaxLength(20);
+
+                entity.HasOne(d => d.ContactPerson)
+                    .WithMany(p => p.PurchaseOrderContactPeople)
+                    .HasForeignKey(d => d.ContactPersonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Purchasing_PurchaseOrders_ContactPersonID_Application_People");
+
+                entity.HasOne(d => d.DeliveryMethod)
+                    .WithMany(p => p.PurchaseOrders)
+                    .HasForeignKey(d => d.DeliveryMethodId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Purchasing_PurchaseOrders_DeliveryMethodID_Application_DeliveryMethods");
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.PurchaseOrderLastEditedByNavigations)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Purchasing_PurchaseOrders_Application_People");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.PurchaseOrders)
+                    .HasForeignKey(d => d.SupplierId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Purchasing_PurchaseOrders_SupplierID_Purchasing_Suppliers");
+            });
+
+            modelBuilder.Entity<PurchaseOrderLine>(entity =>
+            {
                 entity.ToTable("PurchaseOrderLines", "Purchasing");
 
                 entity.HasIndex(e => e.PackageTypeId)
@@ -964,68 +976,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Purchasing_PurchaseOrderLines_StockItemID_Warehouse_StockItems");
             });
 
-            modelBuilder.Entity<PurchaseOrders>(entity =>
+            modelBuilder.Entity<SpecialDeal>(entity =>
             {
-                entity.HasKey(e => e.PurchaseOrderId);
-
-                entity.ToTable("PurchaseOrders", "Purchasing");
-
-                entity.HasIndex(e => e.ContactPersonId)
-                    .HasName("FK_Purchasing_PurchaseOrders_ContactPersonID");
-
-                entity.HasIndex(e => e.DeliveryMethodId)
-                    .HasName("FK_Purchasing_PurchaseOrders_DeliveryMethodID");
-
-                entity.HasIndex(e => e.SupplierId)
-                    .HasName("FK_Purchasing_PurchaseOrders_SupplierID");
-
-                entity.Property(e => e.PurchaseOrderId)
-                    .HasColumnName("PurchaseOrderID")
-                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderID])");
-
-                entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
-
-                entity.Property(e => e.DeliveryMethodId).HasColumnName("DeliveryMethodID");
-
-                entity.Property(e => e.ExpectedDeliveryDate).HasColumnType("date");
-
-                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-                entity.Property(e => e.OrderDate).HasColumnType("date");
-
-                entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
-                entity.Property(e => e.SupplierReference).HasMaxLength(20);
-
-                entity.HasOne(d => d.ContactPerson)
-                    .WithMany(p => p.PurchaseOrdersContactPerson)
-                    .HasForeignKey(d => d.ContactPersonId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Purchasing_PurchaseOrders_ContactPersonID_Application_People");
-
-                entity.HasOne(d => d.DeliveryMethod)
-                    .WithMany(p => p.PurchaseOrders)
-                    .HasForeignKey(d => d.DeliveryMethodId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Purchasing_PurchaseOrders_DeliveryMethodID_Application_DeliveryMethods");
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.PurchaseOrdersLastEditedByNavigation)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Purchasing_PurchaseOrders_Application_People");
-
-                entity.HasOne(d => d.Supplier)
-                    .WithMany(p => p.PurchaseOrders)
-                    .HasForeignKey(d => d.SupplierId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Purchasing_PurchaseOrders_SupplierID_Purchasing_Suppliers");
-            });
-
-            modelBuilder.Entity<SpecialDeals>(entity =>
-            {
-                entity.HasKey(e => e.SpecialDealId);
-
                 entity.ToTable("SpecialDeals", "Sales");
 
                 entity.HasIndex(e => e.BuyingGroupId)
@@ -1101,10 +1053,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Sales_SpecialDeals_StockItemID_Warehouse_StockItems");
             });
 
-            modelBuilder.Entity<StateProvinces>(entity =>
+            modelBuilder.Entity<StateProvince>(entity =>
             {
-                entity.HasKey(e => e.StateProvinceId);
-
                 entity.ToTable("StateProvinces", "Application");
 
                 entity.HasIndex(e => e.CountryId)
@@ -1148,10 +1098,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_StateProvinces_Application_People");
             });
 
-            modelBuilder.Entity<StockGroups>(entity =>
+            modelBuilder.Entity<StockGroup>(entity =>
             {
-                entity.HasKey(e => e.StockGroupId);
-
                 entity.ToTable("StockGroups", "Warehouse");
 
                 entity.HasIndex(e => e.StockGroupName)
@@ -1173,39 +1121,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_StockGroups_Application_People");
             });
 
-            modelBuilder.Entity<StockItemHoldings>(entity =>
+            modelBuilder.Entity<StockItem>(entity =>
             {
-                entity.HasKey(e => e.StockItemId);
-
-                entity.ToTable("StockItemHoldings", "Warehouse");
-
-                entity.Property(e => e.StockItemId)
-                    .HasColumnName("StockItemID")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.BinLocation)
-                    .IsRequired()
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.StockItemHoldings)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Warehouse_StockItemHoldings_Application_People");
-
-                entity.HasOne(d => d.StockItem)
-                    .WithOne(p => p.StockItemHoldings)
-                    .HasForeignKey<StockItemHoldings>(d => d.StockItemId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("PKFK_Warehouse_StockItemHoldings_StockItemID_Warehouse_StockItems");
-            });
-
-            modelBuilder.Entity<StockItems>(entity =>
-            {
-                entity.HasKey(e => e.StockItemId);
-
                 entity.ToTable("StockItems", "Warehouse");
 
                 entity.HasIndex(e => e.ColorId)
@@ -1268,7 +1185,7 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_StockItems_Application_People");
 
                 entity.HasOne(d => d.OuterPackage)
-                    .WithMany(p => p.StockItemsOuterPackage)
+                    .WithMany(p => p.StockItemOuterPackages)
                     .HasForeignKey(d => d.OuterPackageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Warehouse_StockItems_OuterPackageID_Warehouse_PackageTypes");
@@ -1280,16 +1197,43 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_StockItems_SupplierID_Purchasing_Suppliers");
 
                 entity.HasOne(d => d.UnitPackage)
-                    .WithMany(p => p.StockItemsUnitPackage)
+                    .WithMany(p => p.StockItemUnitPackages)
                     .HasForeignKey(d => d.UnitPackageId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Warehouse_StockItems_UnitPackageID_Warehouse_PackageTypes");
             });
 
-            modelBuilder.Entity<StockItemStockGroups>(entity =>
+            modelBuilder.Entity<StockItemHolding>(entity =>
             {
-                entity.HasKey(e => e.StockItemStockGroupId);
+                entity.HasKey(e => e.StockItemId);
 
+                entity.ToTable("StockItemHoldings", "Warehouse");
+
+                entity.Property(e => e.StockItemId)
+                    .HasColumnName("StockItemID")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.BinLocation)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.StockItemHoldings)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Warehouse_StockItemHoldings_Application_People");
+
+                entity.HasOne(d => d.StockItem)
+                    .WithOne(p => p.StockItemHolding)
+                    .HasForeignKey<StockItemHolding>(d => d.StockItemId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("PKFK_Warehouse_StockItemHoldings_StockItemID_Warehouse_StockItems");
+            });
+
+            modelBuilder.Entity<StockItemStockGroup>(entity =>
+            {
                 entity.ToTable("StockItemStockGroups", "Warehouse");
 
                 entity.HasIndex(e => new { e.StockGroupId, e.StockItemId })
@@ -1329,11 +1273,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_StockItemStockGroups_StockItemID_Warehouse_StockItems");
             });
 
-            modelBuilder.Entity<StockItemTransactions>(entity =>
+            modelBuilder.Entity<StockItemTransaction>(entity =>
             {
-                entity.HasKey(e => e.StockItemTransactionId)
-                    .ForSqlServerIsClustered(false);
-
                 entity.ToTable("StockItemTransactions", "Warehouse");
 
                 entity.HasIndex(e => e.CustomerId)
@@ -1416,35 +1357,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Warehouse_StockItemTransactions_TransactionTypeID_Application_TransactionTypes");
             });
 
-            modelBuilder.Entity<SupplierCategories>(entity =>
+            modelBuilder.Entity<Supplier>(entity =>
             {
-                entity.HasKey(e => e.SupplierCategoryId);
-
-                entity.ToTable("SupplierCategories", "Purchasing");
-
-                entity.HasIndex(e => e.SupplierCategoryName)
-                    .HasName("UQ_Purchasing_SupplierCategories_SupplierCategoryName")
-                    .IsUnique();
-
-                entity.Property(e => e.SupplierCategoryId)
-                    .HasColumnName("SupplierCategoryID")
-                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SupplierCategoryID])");
-
-                entity.Property(e => e.SupplierCategoryName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.SupplierCategories)
-                    .HasForeignKey(d => d.LastEditedBy)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Purchasing_SupplierCategories_Application_People");
-            });
-
-            modelBuilder.Entity<Suppliers>(entity =>
-            {
-                entity.HasKey(e => e.SupplierId);
-
                 entity.ToTable("Suppliers", "Purchasing");
 
                 entity.HasIndex(e => e.AlternateContactPersonId)
@@ -1535,13 +1449,13 @@ namespace WideWorldImporters.DAL
                     .HasMaxLength(256);
 
                 entity.HasOne(d => d.AlternateContactPerson)
-                    .WithMany(p => p.SuppliersAlternateContactPerson)
+                    .WithMany(p => p.SupplierAlternateContactPeople)
                     .HasForeignKey(d => d.AlternateContactPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchasing_Suppliers_AlternateContactPersonID_Application_People");
 
                 entity.HasOne(d => d.DeliveryCity)
-                    .WithMany(p => p.SuppliersDeliveryCity)
+                    .WithMany(p => p.SupplierDeliveryCities)
                     .HasForeignKey(d => d.DeliveryCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchasing_Suppliers_DeliveryCityID_Application_Cities");
@@ -1552,19 +1466,19 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Purchasing_Suppliers_DeliveryMethodID_Application_DeliveryMethods");
 
                 entity.HasOne(d => d.LastEditedByNavigation)
-                    .WithMany(p => p.SuppliersLastEditedByNavigation)
+                    .WithMany(p => p.SupplierLastEditedByNavigations)
                     .HasForeignKey(d => d.LastEditedBy)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchasing_Suppliers_Application_People");
 
                 entity.HasOne(d => d.PostalCity)
-                    .WithMany(p => p.SuppliersPostalCity)
+                    .WithMany(p => p.SupplierPostalCities)
                     .HasForeignKey(d => d.PostalCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchasing_Suppliers_PostalCityID_Application_Cities");
 
                 entity.HasOne(d => d.PrimaryContactPerson)
-                    .WithMany(p => p.SuppliersPrimaryContactPerson)
+                    .WithMany(p => p.SupplierPrimaryContactPeople)
                     .HasForeignKey(d => d.PrimaryContactPersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Purchasing_Suppliers_PrimaryContactPersonID_Application_People");
@@ -1576,11 +1490,31 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Purchasing_Suppliers_SupplierCategoryID_Purchasing_SupplierCategories");
             });
 
-            modelBuilder.Entity<SupplierTransactions>(entity =>
+            modelBuilder.Entity<SupplierCategory>(entity =>
             {
-                entity.HasKey(e => e.SupplierTransactionId)
-                    .ForSqlServerIsClustered(false);
+                entity.ToTable("SupplierCategories", "Purchasing");
 
+                entity.HasIndex(e => e.SupplierCategoryName)
+                    .HasName("UQ_Purchasing_SupplierCategories_SupplierCategoryName")
+                    .IsUnique();
+
+                entity.Property(e => e.SupplierCategoryId)
+                    .HasColumnName("SupplierCategoryID")
+                    .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SupplierCategoryID])");
+
+                entity.Property(e => e.SupplierCategoryName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.LastEditedByNavigation)
+                    .WithMany(p => p.SupplierCategories)
+                    .HasForeignKey(d => d.LastEditedBy)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Purchasing_SupplierCategories_Application_People");
+            });
+
+            modelBuilder.Entity<SupplierTransaction>(entity =>
+            {
                 entity.ToTable("SupplierTransactions", "Purchasing");
 
                 entity.HasIndex(e => e.TransactionDate)
@@ -1653,10 +1587,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Purchasing_SupplierTransactions_TransactionTypeID_Application_TransactionTypes");
             });
 
-            modelBuilder.Entity<SystemParameters>(entity =>
+            modelBuilder.Entity<SystemParameter>(entity =>
             {
-                entity.HasKey(e => e.SystemParameterId);
-
                 entity.ToTable("SystemParameters", "Application");
 
                 entity.HasIndex(e => e.DeliveryCityId)
@@ -1698,7 +1630,7 @@ namespace WideWorldImporters.DAL
                     .HasMaxLength(10);
 
                 entity.HasOne(d => d.DeliveryCity)
-                    .WithMany(p => p.SystemParametersDeliveryCity)
+                    .WithMany(p => p.SystemParameterDeliveryCities)
                     .HasForeignKey(d => d.DeliveryCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Application_SystemParameters_DeliveryCityID_Application_Cities");
@@ -1710,16 +1642,14 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_SystemParameters_Application_People");
 
                 entity.HasOne(d => d.PostalCity)
-                    .WithMany(p => p.SystemParametersPostalCity)
+                    .WithMany(p => p.SystemParameterPostalCities)
                     .HasForeignKey(d => d.PostalCityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Application_SystemParameters_PostalCityID_Application_Cities");
             });
 
-            modelBuilder.Entity<TransactionTypes>(entity =>
+            modelBuilder.Entity<TransactionType>(entity =>
             {
-                entity.HasKey(e => e.TransactionTypeId);
-
                 entity.ToTable("TransactionTypes", "Application");
 
                 entity.HasIndex(e => e.TransactionTypeName)
@@ -1741,11 +1671,8 @@ namespace WideWorldImporters.DAL
                     .HasConstraintName("FK_Application_TransactionTypes_Application_People");
             });
 
-            modelBuilder.Entity<VehicleTemperatures>(entity =>
+            modelBuilder.Entity<VehicleTemperature>(entity =>
             {
-                entity.HasKey(e => e.VehicleTemperatureId)
-                    .ForSqlServerIsClustered(false);
-
                 entity.ToTable("VehicleTemperatures", "Warehouse");
 
                 entity.HasAnnotation("SqlServer:MemoryOptimized", true);
