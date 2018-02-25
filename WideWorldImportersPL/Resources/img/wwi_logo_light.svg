@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800px"
+   height="600px"
+   viewBox="0 0 800 600"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="wwi_logo_light.svg">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.28"
+     inkscape:cx="405.02997"
+     inkscape:cy="415.11005"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1278"
+     inkscape:window-height="1368"
+     inkscape:window-x="-7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:snap-center="true"
+     inkscape:snap-to-guides="true" />
+  <defs
+     id="defs10" />
+  <metadata
+     id="metadata13">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <path
+       style="fill:#ffffff;fill-rule:nonzero"
+       mask="logo_text_mask"
+       d="M 73.4375 85.9375 C 64.348437 85.9375 57.03125 93.254688 57.03125 102.34375 L 57.03125 401.5625 C 57.03125 410.65156 64.348438 417.96875 73.4375 417.96875 L 555.46875 417.96875 C 564.55781 417.96875 571.875 410.65156 571.875 401.5625 L 571.875 102.34375 C 571.875 93.254688 564.55781 85.9375 555.46875 85.9375 L 73.4375 85.9375 z M 506.07422 149.13477 C 512.18641 149.13477 517.48008 151.45423 521.95508 156.0918 C 526.43008 160.72936 528.66797 166.27141 528.66797 172.71875 C 528.66797 179.05298 526.43008 184.53822 521.95508 189.17578 C 517.48008 193.81334 512.18641 196.13281 506.07422 196.13281 C 499.85288 196.13281 494.5043 193.81334 490.0293 189.17578 C 485.5543 184.53822 483.31641 179.05298 483.31641 172.71875 C 483.31641 166.15829 485.49938 160.61625 489.86523 156.0918 C 494.34023 151.45423 499.74373 149.13477 506.07422 149.13477 z M 100.23828 200.71289 L 145.91602 200.71289 L 146.08008 279.60938 C 146.51666 287.41405 149.73719 294.20007 155.74023 299.96875 L 155.74023 200.71289 L 201.58203 200.71289 L 201.58203 299.96875 C 208.13081 293.63452 211.4043 286.00025 211.4043 277.06445 L 211.4043 200.71289 L 257.08203 200.71289 L 257.08203 277.06445 C 257.08203 299.12116 249.33276 317.61423 233.83398 332.54492 C 218.44436 347.3625 200.05283 354.77148 178.66016 354.77148 C 168.4004 354.77148 158.36028 352.79093 148.53711 348.83203 C 138.82309 344.76002 130.36381 339.0495 123.16016 331.69727 C 107.87967 316.42724 100.23828 298.21627 100.23828 277.06445 L 100.23828 200.71289 z M 291.77734 200.71289 L 337.45508 200.71289 L 337.61914 279.60938 C 338.05573 287.41405 341.27625 294.20007 347.2793 299.96875 L 347.2793 200.71289 L 393.12109 200.71289 L 393.12109 299.96875 C 399.66987 293.63452 402.94336 286.00025 402.94336 277.06445 L 402.94336 200.71289 L 448.62109 200.71289 L 448.62109 277.06445 C 448.62109 299.12116 440.87182 317.61423 425.37305 332.54492 C 409.98342 347.3625 391.59189 354.77148 370.19922 354.77148 C 359.93947 354.77148 349.89934 352.79093 340.07617 348.83203 C 330.36215 344.76002 321.90287 339.0495 314.69922 331.69727 C 299.41874 316.42724 291.77734 298.21627 291.77734 277.06445 L 291.77734 200.71289 z M 483.31641 200.71289 L 528.66797 200.71289 L 528.66797 354.77148 L 483.31641 354.77148 L 483.31641 200.71289 z "
+       id="rect26" />
+    <rect
+       style="fill:#ffffff;fill-rule:evenodd"
+       id="rect28"
+       width="196.875"
+       height="242.1875"
+       x="571.875"
+       y="175.78125"
+       rx="16.4062"
+       ry="16.4062" />
+    <circle
+       style="fill:#ffffff;fill-rule:evenodd"
+       id="path896"
+       cx="160.54688"
+       cy="440"
+       r="65.234375" />
+    <circle
+       style="fill:#ffffff;fill-rule:evenodd"
+       id="path896-1"
+       cx="640.625"
+       cy="440"
+       r="65.234375" />
+  </g>
+</svg>
