@@ -51,9 +51,9 @@ namespace DataTables.Services
             bool searchOnGlobal = !String.IsNullOrWhiteSpace(request.Search.Value);
 
             Expression globalFilterExpression = null;
-            foreach (DataTableColumn column in request.Columns)
+            foreach (DataTableOptionsColumn column in request.Columns)
             {
-                if (!column.Searchable)
+                if (!column.Searchable.GetValueOrDefault())
                     continue;
 
                 if (column.Data == null) //not a data column
@@ -87,7 +87,7 @@ namespace DataTables.Services
         public IQueryable<T> OrderData<T>(DataTableServerSideRequest request, IQueryable<T> data)
         {
             bool first = true; //denotes the first order expression uses OrderBy and subsequent order expressions use ThenBy
-            foreach (DataTableOrder order in request.Order)
+            foreach (DataTableOptionsOrder order in request.Order)
             {
                 ParameterExpression pe = Expression.Parameter(typeof(T));
 

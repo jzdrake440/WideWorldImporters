@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DataTables\DataTables.csproj" />
     <ProjectReference Include="..\WideWorldImportersBLL\WideWorldImportersBLL.csproj" />
   </ItemGroup>
 

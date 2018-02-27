@@ -10,7 +10,6 @@ namespace WideWorldImporters.Model.Dto
         public int PersonId { get; set; }
         public string FullName { get; set; }
         public string PreferredName { get; set; }
-        public string SearchName { get; set; }
         public bool IsPermittedToLogon { get; set; }
         public string LogonName { get; set; }
         public bool IsExternalLogonProvider { get; set; }

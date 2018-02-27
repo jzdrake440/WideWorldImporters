@@ -17,6 +17,7 @@ namespace WideWorldImporters.Controllers
             _people = people;
         }
 
+        [Route("/")]
         [Route("search")]
         public IActionResult Search()
         {

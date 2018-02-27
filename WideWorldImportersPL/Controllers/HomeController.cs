@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WideWorldImportersPL.Controllers
 {
-    [Route("/")]
+    //[Route("/")]
     public class HomeController : Controller
     {
-        [Route("/")]
+        //[Route("/")]
         public IActionResult Index()
         {
             return View();
