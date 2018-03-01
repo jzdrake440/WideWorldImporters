@@ -16,21 +16,21 @@ namespace DataTables.TagHelpers
     public class DataTableTagHelper : TagHelper
     {
         internal const string TAG_NAME = "data-table";
-        internal const string ATTR_NAME_DTO = "bind-dto";
+        internal const string ATTR_NAME_DTO = "bind-model";
         internal const string ATTR_NAME_OPTIONS = "options";
         internal const string ATTR_NAME_ID = "id";
         internal const string ATTR_NAME_CLASS = "class";
         
         private static readonly string DATA_TABLE_SCRIPT_TEMPLATE =
-            "<script type='text/javascript'>" + Environment.NewLine +
-            "  $(document).ready(function () {{" + Environment.NewLine +
-            "    $('#{0}').DataTable(" + Environment.NewLine +
-            "{1}" + Environment.NewLine +
-            "    )}});" + Environment.NewLine +
+            "<script type='text/javascript'>\n" +
+            "  $(document).ready(function () {{\n" +
+            "    $('#{0}').DataTable(\n" +
+            "{1}\n" +
+            "    )}});\n" +
             "</script>";
 
         [HtmlAttributeName(ATTR_NAME_DTO)]
-        public Type DtoType { get; set; }
+        public Type ModelType { get; set; }
 
         [HtmlAttributeName(ATTR_NAME_OPTIONS)]
         public DataTableOptions Options { get; set; }
@@ -50,22 +50,22 @@ namespace DataTables.TagHelpers
             var dataTableContext = new DataTableContext();
             context.Items[typeof(DataTableContext)] = dataTableContext;
 
-            dataTableContext.DtoType = DtoType;
+            dataTableContext.DtoType = ModelType;
 
             await output.GetChildContentAsync();
 
-            if (DtoType != null)
+            Options.Columns = dataTableContext.Columns.ToArray();
+
+            if (ModelType != null)
             {
-                var columns = from property in DtoType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase)
+                var columns = from property in ModelType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase)
                               where !dataTableContext.ExcludeProperties.Contains(property)
                               select new DataTableOptionsColumn
                               {
                                   Title = property.GetDisplayName(),
                                   Data = property.GetNameCamelCase()
                               };
-
-                Options = Options ?? new DataTableOptions();
-                Options.Columns = columns.ToArray();
+                Options.Columns = Options.Columns.Union(columns).ToArray();
             }
 
             var json = JsonConvert.SerializeObject(

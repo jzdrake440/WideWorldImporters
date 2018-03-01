@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataTables.Models;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -14,5 +15,6 @@ namespace DataTables.TagHelpers
     {
         public Type DtoType { get; set; }
         public readonly HashSet<PropertyInfo> ExcludeProperties = new HashSet<PropertyInfo>();
+        public readonly HashSet<DataTableOptionsColumn> Columns = new HashSet<DataTableOptionsColumn>();
     }
 }

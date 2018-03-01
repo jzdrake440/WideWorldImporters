@@ -1,4 +1,4 @@
-﻿
+﻿@using WideWorldImporters.Extensions
 @{
     ViewData["Title"] = "Search";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,7 @@
 
 <data-table id="peopleTable"
             class="table table-hover"
-            bind-dto=typeof(PersonDto)
+            bind-model=typeof(PersonDto)
             options=@(
     new DataTableOptions {
         ServerSide=true,
@@ -20,8 +20,65 @@
             Type = "POST"
         }
     })>
+    <columns>
+        <merged-column>
+            <column def=@(
+            new DataTableOptionsColumn {
+                Data = nameof(PersonDto.IsPermittedToLogon).ToCamelCase(),
+                Render = "" +
+                "function (data) { " +
+                "  return data ? " +
+                "    '<i class=\"fas fa-sign-in-alt\" style=\"color:black\"></i>' : " +
+                "    '<i class=\"fas fa-sign-in-alt\" style=\"color:lightgray\"></i>'; " +
+                "}"
+            })>
+            </column>
+            <column def=@(
+            new DataTableOptionsColumn {
+                Data = nameof(PersonDto.IsExternalLogonProvider).ToCamelCase(),
+                Render = "" +
+                "function (data) { " +
+                "  return data ? " +
+                "    '<i class=\"fas fa-external-link-alt\" style=\"color:black\"></i>' : " +
+                "    '<i class=\"fas fa-external-link-alt\" style=\"color:lightgray\"></i>'; " +
+                "}"
+            })>
+            </column>
+            <column def=@(
+            new DataTableOptionsColumn {
+                Data = nameof(PersonDto.IsSystemUser).ToCamelCase(),
+                Render = "" +
+                "function (data) { " +
+                "  return data ? " +
+                "    '<i class=\"fas fa-desktop\" style=\"color:black\"></i>' : " +
+                "    '<i class=\"fas fa-desktop\" style=\"color:lightgray\"></i>'; " +
+                "}"
+            })>
+            </column>
+            <column def=@(
+            new DataTableOptionsColumn {
+                Data = nameof(PersonDto.IsEmployee).ToCamelCase(),
+                Render = "" +
+                "function (data) { " +
+                "  return data ? " +
+                "    '<i class=\"fas fa-building\" style=\"color:black\"></i>' : " +
+                "    '<i class=\"fas fa-building\" style=\"color:lightgray\"></i>'; " +
+                "}"
+            })>
+            </column>
+            <column def=@(
+            new DataTableOptionsColumn {
+                Data = nameof(PersonDto.IsSalesperson).ToCamelCase(),
+                Render = "" +
+                "function (data) { " +
+                "  return data ? " +
+                "    '<i class=\"fa-dollar-sign\" style=\"color:black\"></i>' : " +
+                "    '<i class=\"fa-dollar-sign\" style=\"color:lightgray\"></i>'; " +
+                "}"
+            })>
+            </column>
+        </merged-column>
+    </columns>
 </data-table>
 
-@section scripts
-    {
-}
+@section scripts {}

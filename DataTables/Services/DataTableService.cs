@@ -89,6 +89,10 @@ namespace DataTables.Services
             bool first = true; //denotes the first order expression uses OrderBy and subsequent order expressions use ThenBy
             foreach (DataTableOptionsOrder order in request.Order)
             {
+                //bug in datatables, can send an order request for unorderable columns
+                if (!request.Columns[order.Column].Orderable.GetValueOrDefault(true))
+                    continue;
+
                 ParameterExpression pe = Expression.Parameter(typeof(T));
 
                 var prop = typeof(T).GetProperty(

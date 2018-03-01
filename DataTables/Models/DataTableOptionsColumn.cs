@@ -1,4 +1,7 @@
-﻿namespace DataTables.Models
+﻿using DataTables.Json;
+using Newtonsoft.Json;
+
+namespace DataTables.Models
 {
     public class DataTableOptionsColumn
     {
@@ -13,7 +16,10 @@
         public int[] OrderData { get; set; }
         public string OrderDataType { get; set; } //TODO enum
         public string[] OrderSequence { get; set; }
-        public string Renderer { get; set; } //TODO support objects
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string Render { get; set; } //TODO support objects
+
         public bool? Searchable { get; set; }
         public string Title { get; set; }
         public string Type { get; set; } //TODO enum
