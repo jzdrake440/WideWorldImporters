@@ -10,7 +10,7 @@ namespace DataTables.TagHelpers
     [HtmlTargetElement(TAG_NAME)]
     public class DataTableMergedColumnTagHelper : DataTableColumnTagHelper
     {
-        internal new const string TAG_NAME = "merged-column";
+        public new const string TAG_NAME = "merged-column";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -20,11 +20,10 @@ namespace DataTables.TagHelpers
 
             await output.GetChildContentAsync();
 
-            var newColumn = new DataTableOptionsColumn();
-            newColumn.Searchable = false; //TODO add support
-            newColumn.Orderable = false; //TODO add support
+            Column.Searchable = false; //TODO add support
+            Column.Orderable = false; //TODO add support
 
-            StringBuilder renderFunction = new StringBuilder();
+            var renderFunction = new StringBuilder();
             renderFunction.AppendLine("function(data, type, row, meta) {");
             renderFunction.AppendLine("  var ret = '';");
 
@@ -40,9 +39,9 @@ namespace DataTables.TagHelpers
             renderFunction.AppendLine("  return ret;");
             renderFunction.Append("}");
 
-            newColumn.Render = renderFunction.ToString();
+            Column.Render = renderFunction.ToString();
             
-            columnGroupContext.Columns.Add(newColumn);
+            columnGroupContext.Columns.Add(Column);
             output.SuppressOutput();
         }
     }

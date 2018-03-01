@@ -3,11 +3,11 @@
   "private": true,
   "exportsOverride": {},
   "dependencies": {
-    "jQuery": "3.3.1",
-    "popper.js": "v1.12.9",
-    "bootstrap": "v4.0.0",
-    "datatables.net": "^1.10.16",
+    "jQuery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "bootstrap": "^4.0.0",
     "datatables.net-bs4": "^3.2.2",
+    "datatables.net-responsive-bs4": "^2.2.0",
     "@fortawesome/fontawesome": "^5.0.7"
   }
 }

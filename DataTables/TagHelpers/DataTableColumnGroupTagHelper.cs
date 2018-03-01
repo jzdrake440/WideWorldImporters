@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace DataTables.TagHelpers
 {
     [HtmlTargetElement(TAG_NAME)]
     public class DataTableColumnGroupTagHelper : TagHelper
     {
-        internal const string TAG_NAME = "columns";
+        public const string TAG_NAME = "columns";
 
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
@@ -19,8 +20,9 @@ namespace DataTables.TagHelpers
             await output.GetChildContentAsync();
 
             var dataTableContext = (DataTableContext)context.Items[typeof(DataTableContext)];
+            var options = dataTableContext.Options;
 
-            dataTableContext.Columns.UnionWith(columnGroupContext.Columns);
+            options.Columns = options.Columns.Union(columnGroupContext.Columns).ToArray();
             
             output.SuppressOutput();
         }

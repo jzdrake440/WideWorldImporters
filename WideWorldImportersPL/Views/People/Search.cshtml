@@ -8,9 +8,9 @@
 
 <data-table id="peopleTable"
             class="table table-hover"
-            bind-model=typeof(PersonDto)
             options=@(
-    new DataTableOptions {
+    new DataTableOptions
+    {
         ServerSide=true,
         SearchDelay=1000,
         Ajax = new DataTableOptionsAjax
@@ -18,67 +18,74 @@
             Url = "/dt/people",
             DataSrc = "data",
             Type = "POST"
-        }
+        },
+        DrawCallback = "function(settings) { $('[data-toggle=\"tooltip\"]').tooltip(); }",
+        Responsive=true
     })>
+    @{ 
+        var RenderTemplate = "" + //TODO make this less bleh
+                "function (data) {{ " +
+                "  return `" +
+                "<span data-toggle=\"tooltip\" title=\"{0}\" class=\"pl-1\">" +
+                "<i class=\"{1}\" style=\"color:${{data? 'black' : 'lightgray'}}\"></i>" +
+                "</span>`; }}";
+    }
     <columns>
-        <merged-column>
-            <column def=@(
-            new DataTableOptionsColumn {
-                Data = nameof(PersonDto.IsPermittedToLogon).ToCamelCase(),
-                Render = "" +
-                "function (data) { " +
-                "  return data ? " +
-                "    '<i class=\"fas fa-sign-in-alt\" style=\"color:black\"></i>' : " +
-                "    '<i class=\"fas fa-sign-in-alt\" style=\"color:lightgray\"></i>'; " +
-                "}"
+        <merged-column def=@(
+            new DataTableOptionsColumn
+            {
+                ClassName = "text-nowrap"
             })>
+            <column def=@(
+                new DataTableOptionsColumn
+                {
+                    Data = nameof(PersonDto.IsPermittedToLogon).ToCamelCase(),
+                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsPermittedToLogon), "fas fa-sign-in-alt")
+                })>
             </column>
             <column def=@(
-            new DataTableOptionsColumn {
-                Data = nameof(PersonDto.IsExternalLogonProvider).ToCamelCase(),
-                Render = "" +
-                "function (data) { " +
-                "  return data ? " +
-                "    '<i class=\"fas fa-external-link-alt\" style=\"color:black\"></i>' : " +
-                "    '<i class=\"fas fa-external-link-alt\" style=\"color:lightgray\"></i>'; " +
-                "}"
-            })>
+                new DataTableOptionsColumn
+                {
+                    Data = nameof(PersonDto.IsExternalLogonProvider).ToCamelCase(),
+                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsExternalLogonProvider), "fas fa-external-link-alt")
+                })>
             </column>
             <column def=@(
-            new DataTableOptionsColumn {
-                Data = nameof(PersonDto.IsSystemUser).ToCamelCase(),
-                Render = "" +
-                "function (data) { " +
-                "  return data ? " +
-                "    '<i class=\"fas fa-desktop\" style=\"color:black\"></i>' : " +
-                "    '<i class=\"fas fa-desktop\" style=\"color:lightgray\"></i>'; " +
-                "}"
-            })>
+                new DataTableOptionsColumn
+                {
+                    Data = nameof(PersonDto.IsSystemUser).ToCamelCase(),
+                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsSystemUser), "fas fa-desktop")
+                })>
             </column>
             <column def=@(
-            new DataTableOptionsColumn {
-                Data = nameof(PersonDto.IsEmployee).ToCamelCase(),
-                Render = "" +
-                "function (data) { " +
-                "  return data ? " +
-                "    '<i class=\"fas fa-building\" style=\"color:black\"></i>' : " +
-                "    '<i class=\"fas fa-building\" style=\"color:lightgray\"></i>'; " +
-                "}"
-            })>
+                new DataTableOptionsColumn
+                {
+                    Data = nameof(PersonDto.IsEmployee).ToCamelCase(),
+                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsEmployee), "fas fa-building")
+                })>
             </column>
             <column def=@(
-            new DataTableOptionsColumn {
-                Data = nameof(PersonDto.IsSalesperson).ToCamelCase(),
-                Render = "" +
-                "function (data) { " +
-                "  return data ? " +
-                "    '<i class=\"fa-dollar-sign\" style=\"color:black\"></i>' : " +
-                "    '<i class=\"fa-dollar-sign\" style=\"color:lightgray\"></i>'; " +
-                "}"
-            })>
+                new DataTableOptionsColumn
+                {
+                    Data = nameof(PersonDto.IsSalesperson).ToCamelCase(),
+                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsSalesperson), "fas fa-dollar-sign")
+                })>
             </column>
         </merged-column>
     </columns>
+    <bind-model type=@typeof(PersonDto)
+                exclude=@(new string[]{
+                    nameof(PersonDto.IsPermittedToLogon),
+                    nameof(PersonDto.IsExternalLogonProvider),
+                    nameof(PersonDto.IsSystemUser),
+                    nameof(PersonDto.IsEmployee),
+                    nameof(PersonDto.IsSalesperson)}) />
 </data-table>
 
-@section scripts {}
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+        
+        })
+    </script>
+}

@@ -13,8 +13,6 @@ namespace DataTables.TagHelpers
      */
     public class DataTableContext
     {
-        public Type DtoType { get; set; }
-        public readonly HashSet<PropertyInfo> ExcludeProperties = new HashSet<PropertyInfo>();
-        public readonly HashSet<DataTableOptionsColumn> Columns = new HashSet<DataTableOptionsColumn>();
+        public DataTableOptions Options { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace DataTables.TagHelpers
     [HtmlTargetElement(TAG_NAME)]
     public class BodyTagHelper : TagHelper
     {
-        internal const string TAG_NAME = "body";
+        public const string TAG_NAME = "body";
 
         [ViewContext]
         public ViewContext ViewContext { get; set; }

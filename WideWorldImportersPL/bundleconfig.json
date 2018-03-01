@@ -4,7 +4,8 @@
     "outputFileName": "wwwroot/css/bundled.css",
     "inputFiles": [
       "bower_components/bootstrap/dist/css/bootstrap.css",
-      "bower_components/datatables.net-bs4/css/dataTables.bootstrap4.js",
+      "bower_components/datatables.net-bs4/css/dataTables.bootstrap4.css",
+      "bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.css",
       "Resources/css/wwi.css"
     ],
     "minify": {
@@ -21,6 +22,8 @@
       "bower_components/bootstrap/dist/js/bootstrap.js",
       "bower_components/datatables.net/js/jquery.dataTables.js",
       "bower_components/datatables.net-bs4/js/dataTables.bootstrap4.js",
+      "bower_components/datatables.net-responsive/js/dataTables.responsive.js",
+      "bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.js",
       "bower_components/@fortawesome/fontawesome/svg-with-js/js/fontawesome-all.js",
       "Resources/js/dataTables.searchHeaders.js"
     ],

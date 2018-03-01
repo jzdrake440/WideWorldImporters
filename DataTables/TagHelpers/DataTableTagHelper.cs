@@ -16,10 +16,8 @@ namespace DataTables.TagHelpers
     public class DataTableTagHelper : TagHelper
     {
         internal const string TAG_NAME = "data-table";
-        internal const string ATTR_NAME_DTO = "bind-model";
         internal const string ATTR_NAME_OPTIONS = "options";
         internal const string ATTR_NAME_ID = "id";
-        internal const string ATTR_NAME_CLASS = "class";
         
         private static readonly string DATA_TABLE_SCRIPT_TEMPLATE =
             "<script type='text/javascript'>\n" +
@@ -28,9 +26,6 @@ namespace DataTables.TagHelpers
             "{1}\n" +
             "    )}});\n" +
             "</script>";
-
-        [HtmlAttributeName(ATTR_NAME_DTO)]
-        public Type ModelType { get; set; }
 
         [HtmlAttributeName(ATTR_NAME_OPTIONS)]
         public DataTableOptions Options { get; set; }
@@ -46,27 +41,14 @@ namespace DataTables.TagHelpers
             output.TagName = "table";
             output.Attributes.Add("id", Id); //need to pass "id" through
 
-
-            var dataTableContext = new DataTableContext();
+            Options.Columns = Options.Columns ?? new DataTableOptionsColumn[0];
+            var dataTableContext = new DataTableContext
+            {
+                Options = Options,
+            };
             context.Items[typeof(DataTableContext)] = dataTableContext;
 
-            dataTableContext.DtoType = ModelType;
-
             await output.GetChildContentAsync();
-
-            Options.Columns = dataTableContext.Columns.ToArray();
-
-            if (ModelType != null)
-            {
-                var columns = from property in ModelType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase)
-                              where !dataTableContext.ExcludeProperties.Contains(property)
-                              select new DataTableOptionsColumn
-                              {
-                                  Title = property.GetDisplayName(),
-                                  Data = property.GetNameCamelCase()
-                              };
-                Options.Columns = Options.Columns.Union(columns).ToArray();
-            }
 
             var json = JsonConvert.SerializeObject(
                 Options,

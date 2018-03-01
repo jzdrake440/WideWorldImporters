@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataTables.Json;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,7 +26,48 @@ namespace DataTables.Models
         public DataTableOptionsAjax Ajax { get; set; }
         public object[] Data { get; set; }
 
-        //TODO Callbacks
+        //Callbacks
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string CreateRow { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string DrawCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string FooterCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string FormatNumber { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string HeaderCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string InfoCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string InitComplete { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string PreDrawCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string RowCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string StateLoadCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string StateLoaded { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string StateLoadParams { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string StateSaveCallback { get; set; }
+
+        [JsonConverter(typeof(FunctionSerializer))]
+        public string StateSaveParams { get; set; }
 
         //Options
         public bool? DeferLoading { get; set; }
@@ -56,5 +99,8 @@ namespace DataTables.Models
 
         //TODO Internationalization
 
+
+        //Extensions/Plugins //TODO do this a less static way
+        public bool? Responsive { get; set; }
     }
 }
