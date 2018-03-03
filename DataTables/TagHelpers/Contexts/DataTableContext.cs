@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace DataTables.TagHelpers
+namespace DataTables.TagHelpers.Contexts
 {
     /* as described in:
      * http://blog.techdominator.com/article/the-very-basics-of-nesting-for-tag-helpers.html

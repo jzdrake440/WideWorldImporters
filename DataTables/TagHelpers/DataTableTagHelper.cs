@@ -1,14 +1,12 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using DataTables.Extensions;
 using DataTables.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Newtonsoft.Json.Serialization;
+using DataTables.TagHelpers.Contexts;
 
 namespace DataTables.TagHelpers
 {
