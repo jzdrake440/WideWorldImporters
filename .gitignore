@@ -260,5 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /WideWorldImportersPL/wwwroot
-/JavascriptBuilder
 /WideWorldImportersPL/bower_components

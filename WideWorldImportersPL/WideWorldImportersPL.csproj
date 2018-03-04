@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataTables\DataTables.csproj" />
+    <ProjectReference Include="..\JavascriptBuilder\JavascriptBuilder.csproj" />
     <ProjectReference Include="..\WideWorldImportersBLL\WideWorldImportersBLL.csproj" />
   </ItemGroup>
 
