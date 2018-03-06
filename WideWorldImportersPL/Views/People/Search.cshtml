@@ -22,14 +22,6 @@
         DrawCallback = "function(settings) { $('[data-toggle=\"tooltip\"]').tooltip(); }",
         Responsive=true
     })>
-    @{ 
-        var RenderTemplate = "" + //TODO make this less bleh
-                "function (data) {{ " +
-                "  return `" +
-                "<span data-toggle=\"tooltip\" title=\"{0}\" class=\"pl-1\">" +
-                "<i class=\"{1}\" style=\"color:${{data? 'black' : 'lightgray'}}\"></i>" +
-                "</span>`; }}";
-    }
     <columns>
         <merged-column def=@(
             new DataTableOptionsColumn
@@ -37,38 +29,54 @@
                 ClassName = "text-nowrap"
             })>
             <column def=@(
-                new DataTableOptionsColumn
+                new DataTableOptionsColumn<PersonDto, bool>
                 {
                     Data = nameof(PersonDto.IsPermittedToLogon).ToCamelCase(),
-                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsPermittedToLogon), "fas fa-sign-in-alt")
+                    RenderFunction = (data, type, row, meta) =>
+                        "<span data-toggle='tooltip' title='" + nameof(PersonDto.IsPermittedToLogon) + "' class='pl-1'>" +
+                        "<i class='fas fa-sign-in-alt' style='color:" + (data? "black" : "lightgray") + "'></i>" +
+                        "</span>"
                 })>
             </column>
             <column def=@(
-                new DataTableOptionsColumn
+                new DataTableOptionsColumn<PersonDto, bool>
                 {
                     Data = nameof(PersonDto.IsExternalLogonProvider).ToCamelCase(),
-                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsExternalLogonProvider), "fas fa-external-link-alt")
+                    RenderFunction = (data, type, row, meta) =>
+                        "<span data-toggle='tooltip' title='" + nameof(PersonDto.IsExternalLogonProvider) + "' class='pl-1'>" +
+                        "<i class='fas fa-external-link-alt' style='color:" + (data? "black" : "lightgray") + "'></i>" +
+                        "</span>"
+
                 })>
             </column>
             <column def=@(
-                new DataTableOptionsColumn
+                new DataTableOptionsColumn<PersonDto, bool>
                 {
                     Data = nameof(PersonDto.IsSystemUser).ToCamelCase(),
-                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsSystemUser), "fas fa-desktop")
+                    RenderFunction = (data, type, row, meta) =>
+                        "<span data-toggle='tooltip' title='" + nameof(PersonDto.IsSystemUser) + "' class='pl-1'>" +
+                        "<i class='fas fa-desktop' style='color:" + (data? "black" : "lightgray") + "'></i>" +
+                        "</span>"
                 })>
             </column>
             <column def=@(
-                new DataTableOptionsColumn
+                new DataTableOptionsColumn<PersonDto, bool>
                 {
                     Data = nameof(PersonDto.IsEmployee).ToCamelCase(),
-                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsEmployee), "fas fa-building")
+                    RenderFunction = (data, type, row, meta) =>
+                        "<span data-toggle='tooltip' title='" + nameof(PersonDto.IsEmployee) + "' class='pl-1'>" +
+                        "<i class='fas fa-building' style='color:" + (data? "black" : "lightgray") + "'></i>" +
+                        "</span>"
                 })>
             </column>
             <column def=@(
-                new DataTableOptionsColumn
+                new DataTableOptionsColumn<PersonDto, bool>
                 {
                     Data = nameof(PersonDto.IsSalesperson).ToCamelCase(),
-                    Render = String.Format(RenderTemplate, nameof(PersonDto.IsSalesperson), "fas fa-dollar-sign")
+                    RenderFunction = (data, type, row, meta) =>
+                        "<span data-toggle='tooltip' title='" + nameof(PersonDto.IsSalesperson) + "' class='pl-1'>" +
+                        "<i class='fas fa-dollar-sign' style='color:" + (data? "black" : "lightgray") + "'></i>" +
+                        "</span>"
                 })>
             </column>
         </merged-column>

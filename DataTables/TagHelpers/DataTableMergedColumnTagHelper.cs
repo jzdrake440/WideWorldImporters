@@ -1,4 +1,5 @@
-﻿using DataTables.Models;
+﻿using DataTables.Expressions;
+using DataTables.Models;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,12 @@ namespace DataTables.TagHelpers
             renderFunction.AppendLine("function(data, type, row, meta) {");
             renderFunction.AppendLine("  var ret = '';");
 
-            foreach(var column in mergedColumnContext.Columns)
+            foreach (var column in mergedColumnContext.Columns)
             {
                 renderFunction.AppendFormat(
-                    "  ret += {0}(row{1}, type, row, meta);", 
+                    "  ret += {0}(row{1}, type, row, meta);",
                     column.Render ?? "function(data){return data;}",
-                    column.Data?.Insert(0,".")
+                    column.Data?.Insert(0, ".")
                 ).AppendLine();
             }
 
